@@ -5,19 +5,10 @@ from flask import Flask
 from flask_restful import Resource, Api, reqparse
 import psycopg2
 import json
-import signal
-import sys
 import os
 from psycopg2.extras import RealDictCursor
 import ast
 
-
-def signal_handler(sig, frame):  # Handle SIGINTs cleanly
-    conn.close()
-    sys.exit(0)
-
-
-signal.signal(signal.SIGINT, signal_handler)
 
 # Connect to db with url
 conn = psycopg2.connect(os.environ['DATABASE_URL'])
