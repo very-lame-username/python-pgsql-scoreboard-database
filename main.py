@@ -79,6 +79,8 @@ class Scoreboard(Resource):
             limit = 25
         elif args['limit'] > 9999:
             limit = 9999
+        elif args['limit'] < 1:
+            limit = 1
         else:
             limit = args['limit']
         data = db_get(limit)
