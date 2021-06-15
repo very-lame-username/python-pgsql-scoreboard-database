@@ -8,6 +8,7 @@ import json
 import os
 from psycopg2.extras import RealDictCursor
 import ast
+from flask_cors import CORS
 
 
 # Connect to db with url
@@ -65,6 +66,7 @@ def db_delete():
 
 # Flask stuff
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 
