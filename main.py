@@ -105,7 +105,7 @@ class Scoreboard(Resource):
 
     def delete(self):
         parser = reqparse.RequestParser()  # initialize
-        parser.add_argument('password', required=True)  # add args
+        parser.add_argument('password', required=False)  # password is not required as it is handled below
         args = parser.parse_args()  # parse arguments to dictionary
         if args['password'] != 'deleteMyDatabase123$':  # insecure but it doesn't matter
             return {'message': 'Forbidden'}, 403  # return message and 403 Forbidden code
@@ -113,7 +113,13 @@ class Scoreboard(Resource):
         return 'Deleted', 200
 
 
+class KeepAlive(Resource):
+    def get(self):
+        return 'OK', 200  # return 200 OK code
+
+
 api.add_resource(Scoreboard, '/scoreboard')  # '/scoreboard' is our entry point
+api.add_resource(KeepAlive, '/wake')  # '/scoreboard' is our entry point
 
 
 if __name__ == '__main__':
